@@ -41,6 +41,17 @@ defmodule RiotApi.Cipher.Base64Test do
     assert Base64.decrypt(value) == value
   end
 
+  test "returns Base64 decoding to non-UTF-8 bytes unchanged" do
+    values = [
+      Base.encode64(<<255>>),
+      Base.encode64("riot:base64:v1:" <> <<255>>)
+    ]
+
+    for value <- values do
+      assert Base64.decrypt(value) == value
+    end
+  end
+
   test "returns non-string JSON values unchanged" do
     values = [
       30,
