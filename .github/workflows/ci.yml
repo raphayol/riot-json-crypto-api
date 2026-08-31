@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  precommit:
+    name: Pre-commit
+    runs-on: ubuntu-24.04
+
+    env:
+      MIX_ENV: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Erlang and Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          version-file: mise.toml
+          version-type: strict
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Run pre-commit checks
+        run: mix precommit
+
+      - name: Ensure checks did not modify tracked files
+        run: git diff --exit-code
