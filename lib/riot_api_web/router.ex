@@ -9,5 +9,7 @@ defmodule RiotApiWeb.Router do
     pipe_through :api
     post "/encrypt", EncryptionController, :encrypt
     post "/decrypt", EncryptionController, :decrypt
+    post "/sign", SignatureController, :sign
+    post "/verify", SignatureController, :verify
   end
 end

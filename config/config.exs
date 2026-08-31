@@ -18,6 +18,9 @@ config :riot_api, RiotApiWeb.Endpoint,
 # Configure the default reversible transformation
 config :riot_api, :cipher, RiotApi.Cipher.Base64
 
+# Configure the default signature algorithm
+config :riot_api, :signer, RiotApi.Signer.HMAC
+
 # Configure Elixir's Logger
 config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",

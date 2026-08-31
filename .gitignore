@@ -27,3 +27,6 @@ riot_api-*.tar
 
 # Ignore the directory where the Expert language server stores its artifacts.
 /.expert/
+
+# Local environment values and secrets.
+/.env

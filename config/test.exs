@@ -1,5 +1,7 @@
 import Config
 
+config :riot_api, :signing_secret, "test-signing-secret"
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :riot_api, RiotApiWeb.Endpoint,

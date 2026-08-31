@@ -23,6 +23,15 @@ end
 if config_env() != :test do
   config :riot_api, RiotApiWeb.Endpoint,
     http: [port: String.to_integer(System.get_env("PORT", "4000"))]
+
+  signing_secret =
+    System.get_env("RIOT_SIGNING_SECRET") ||
+      raise """
+      environment variable RIOT_SIGNING_SECRET is missing.
+      Set it to a strong random secret before starting the application.
+      """
+
+  config :riot_api, :signing_secret, signing_secret
 end
 
 if config_env() == :prod do

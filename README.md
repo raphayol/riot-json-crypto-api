@@ -8,9 +8,6 @@ Base64 transformation and signature creation/verification.
 The project is intentionally implemented as a small JSON-only API. It has no
 database, HTML interface, frontend assets, or mailer.
 
-> Status: the Phoenix project is bootstrapped; the exercise endpoints are not
-> implemented yet.
-
 ## Required API
 
 | Method | Path | Responsibility |
@@ -51,6 +48,15 @@ Download the Mix dependencies:
 mix setup
 ```
 
+Create your local environment file from the tracked example:
+
+```sh
+cp .env.example .env
+```
+
+The local `.env` file is ignored by Git. With `mise` activated, its variables
+are loaded automatically from the project configuration.
+
 ## Running locally
 
 Start the Phoenix endpoint:
@@ -60,6 +66,9 @@ mix phx.server
 ```
 
 The development server listens on <http://localhost:4000> by default.
+`RIOT_SIGNING_SECRET` is shared by `/sign` and `/verify`; production must
+provide a strong value through its runtime environment rather than through the
+local `.env` file.
 
 ## Tests and quality checks
 
