@@ -41,7 +41,8 @@ defmodule RiotJsonCrypto.MixProject do
     [
       {:phoenix, "~> 1.8.13"},
       {:jason, "~> 1.2"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:open_api_spex, "~> 3.22"}
     ]
   end
 
