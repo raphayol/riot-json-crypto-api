@@ -7,5 +7,7 @@ defmodule RiotApiWeb.Router do
 
   scope "/", RiotApiWeb do
     pipe_through :api
+    post "/encrypt", EncryptionController, :encrypt
+    post "/decrypt", EncryptionController, :decrypt
   end
 end
