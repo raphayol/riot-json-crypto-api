@@ -23,7 +23,7 @@ erl_crash.dump
 /tmp/
 
 # Ignore package tarball (built via "mix hex.build").
-riot_api-*.tar
+riot_json_crypto-*.tar
 
 # Ignore the directory where the Expert language server stores its artifacts.
 /.expert/

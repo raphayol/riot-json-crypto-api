@@ -1,9 +1,9 @@
-defmodule RiotApi.MixProject do
+defmodule RiotJsonCrypto.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :riot_api,
+      app: :riot_json_crypto,
       version: "0.1.0",
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule RiotApi.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {RiotApi.Application, []},
+      mod: {RiotJsonCrypto.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

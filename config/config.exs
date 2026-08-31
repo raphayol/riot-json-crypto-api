@@ -7,19 +7,19 @@
 import Config
 
 # Configure the endpoint
-config :riot_api, RiotApiWeb.Endpoint,
+config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [json: RiotApiWeb.ErrorJSON],
+    formats: [json: RiotJsonCryptoWeb.ErrorJSON],
     layout: false
   ]
 
 # Configure the default reversible transformation
-config :riot_api, :cipher, RiotApi.Cipher.Base64
+config :riot_json_crypto, :cipher, RiotJsonCrypto.Cipher.Base64
 
 # Configure the default signature algorithm
-config :riot_api, :signer, RiotApi.Signer.HMAC
+config :riot_json_crypto, :signer, RiotJsonCrypto.Signer.HMAC
 
 # Configure Elixir's Logger
 config :logger, :default_formatter,

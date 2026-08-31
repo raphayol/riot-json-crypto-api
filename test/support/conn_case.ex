@@ -1,4 +1,4 @@
-defmodule RiotApiWeb.ConnCase do
+defmodule RiotJsonCryptoWeb.ConnCase do
   @moduledoc """
   Test case for requests sent through the Phoenix endpoint.
 
@@ -11,14 +11,14 @@ defmodule RiotApiWeb.ConnCase do
   using do
     quote do
       # The default endpoint for testing
-      @endpoint RiotApiWeb.Endpoint
+      @endpoint RiotJsonCryptoWeb.Endpoint
 
-      use RiotApiWeb, :verified_routes
+      use RiotJsonCryptoWeb, :verified_routes
 
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import RiotApiWeb.ConnCase
+      import RiotJsonCryptoWeb.ConnCase
     end
   end
 

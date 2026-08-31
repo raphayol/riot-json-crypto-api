@@ -1,4 +1,4 @@
-# Riot API agent guidance
+# Riot JSON Crypto API agent guidance
 
 ## Project context
 
@@ -25,10 +25,10 @@ HTML, LiveView, frontend assets, mailer, or database.
 
 ## Architecture
 
-- Keep transport concerns in `RiotApiWeb`: routing, HTTP validation, status
+- Keep transport concerns in `RiotJsonCryptoWeb`: routing, HTTP validation, status
   codes, and JSON responses.
 - Keep encryption, decryption, signing, verification, and canonicalization in
-  `RiotApi`, without dependencies on Phoenix connection structs.
+  `RiotJsonCrypto`, without dependencies on Phoenix connection structs.
 - Keep the reversible transformation and signing algorithms behind small,
   explicit contracts so either implementation can be replaced independently.
 - Treat Base64 as an encoding, not as secure encryption.
@@ -45,8 +45,8 @@ HTML, LiveView, frontend assets, mailer, or database.
 - Put one top-level module in each source file.
 - Keep functions focused and name predicates with a trailing `?`; reserve an
   `is_` prefix for guards.
-- Define API routes in `RiotApiWeb.Router` and test them through the generated
-  `RiotApiWeb.ConnCase` support.
+- Define API routes in `RiotJsonCryptoWeb.Router` and test them through the generated
+  `RiotJsonCryptoWeb.ConnCase` support.
 - `Plug.Parsers` nests every valid top-level JSON value under the `"_json"` key;
   unwrap that value once at the HTTP boundary before calling domain code.
 - Preserve arbitrary valid JSON types rather than assuming every payload is an

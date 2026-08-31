@@ -1,10 +1,10 @@
 import Config
 
-config :riot_api, :signing_secret, "test-signing-secret"
+config :riot_json_crypto, :signing_secret, "test-signing-secret"
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :riot_api, RiotApiWeb.Endpoint,
+config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "0OwAU5aAf8kxya8jBT/S75Q8PpGQAvr5paKNmEF2AQ02tsyx65RITgeRK0iiUzja",
   server: false

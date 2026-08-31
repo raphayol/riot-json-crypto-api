@@ -1,4 +1,4 @@
-# Riot API
+# Riot JSON Crypto API
 
 An Elixir/Phoenix implementation of the
 [Riot backend take-home exercise](https://github.com/tryriot/take-home). The
@@ -90,8 +90,8 @@ mix precommit
 ```text
 config/             Phoenix and runtime configuration
 docs/               Authored design documentation
-lib/riot_api/       Framework-independent domain logic
-lib/riot_api_web/   HTTP endpoint, router, and web adapters
+lib/riot_json_crypto/       Framework-independent domain logic
+lib/riot_json_crypto_web/   HTTP endpoint, router, and web adapters
 test/               Unit and HTTP boundary tests
 ```
 

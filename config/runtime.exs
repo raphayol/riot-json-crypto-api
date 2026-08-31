@@ -12,16 +12,16 @@ import Config
 # If you use `mix release`, you need to explicitly enable the server
 # by passing the PHX_SERVER=true when you start it:
 #
-#     PHX_SERVER=true bin/riot_api start
+#     PHX_SERVER=true bin/riot_json_crypto start
 #
 # Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
 # script that automatically sets the env var above.
 if System.get_env("PHX_SERVER") do
-  config :riot_api, RiotApiWeb.Endpoint, server: true
+  config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint, server: true
 end
 
 if config_env() != :test do
-  config :riot_api, RiotApiWeb.Endpoint,
+  config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint,
     http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 
   signing_secret =
@@ -31,7 +31,7 @@ if config_env() != :test do
       Set it to a strong random secret before starting the application.
       """
 
-  config :riot_api, :signing_secret, signing_secret
+  config :riot_json_crypto, :signing_secret, signing_secret
 end
 
 if config_env() == :prod do
@@ -49,7 +49,7 @@ if config_env() == :prod do
 
   host = System.get_env("PHX_HOST") || "example.com"
 
-  config :riot_api, RiotApiWeb.Endpoint,
+  config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     http: [
       # Enable IPv6 and bind on all interfaces.
@@ -65,7 +65,7 @@ if config_env() == :prod do
   # To get SSL working, you will need to add the `https` key
   # to your endpoint configuration:
   #
-  #     config :riot_api, RiotApiWeb.Endpoint,
+  #     config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint,
   #       https: [
   #         ...,
   #         port: 443,
@@ -87,7 +87,7 @@ if config_env() == :prod do
   # We also recommend setting `force_ssl` in your config/prod.exs,
   # ensuring no data is ever sent via http, always redirecting to https:
   #
-  #     config :riot_api, RiotApiWeb.Endpoint,
+  #     config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint,
   #       force_ssl: [hsts: true]
   #
   # Check `Plug.SSL` for all available options in `force_ssl`.
