@@ -1,0 +1,20 @@
+services:
+  api:
+    build:
+      context: .
+      target: development
+    command: sh -c "mix setup && exec mix phx.server"
+    environment:
+      PHX_IP: 0.0.0.0
+      PORT: "4000"
+      RIOT_SIGNING_SECRET: ${RIOT_SIGNING_SECRET:?Set RIOT_SIGNING_SECRET in .env}
+    ports:
+      - "127.0.0.1:4000:4000"
+    volumes:
+      - .:/app
+      - mix_deps:/app/deps
+      - mix_build:/app/_build
+
+volumes:
+  mix_deps:
+  mix_build:

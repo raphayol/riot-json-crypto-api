@@ -1,10 +1,15 @@
 import Config
 
+bind_ip =
+  case :inet.parse_address(String.to_charlist(System.get_env("PHX_IP", "127.0.0.1"))) do
+    {:ok, address} -> address
+    {:error, reason} -> raise "invalid PHX_IP: #{inspect(reason)}"
+  end
+
 # For development, enable debugging and code reloading.
 config :riot_json_crypto, RiotJsonCryptoWeb.Endpoint,
-  # Binding to loopback ipv4 address prevents access from other machines.
-  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}],
+  # Loopback remains the default; containers can set PHX_IP=0.0.0.0.
+  http: [ip: bind_ip],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

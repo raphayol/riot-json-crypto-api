@@ -70,6 +70,40 @@ The development server listens on <http://localhost:4000> by default.
 provide a strong value through its runtime environment rather than through the
 local `.env` file.
 
+## Running with Docker
+
+Docker Compose uses the same `.env` file, exposes the API on port 4000, and
+mounts named volumes for Mix dependencies and build artifacts:
+
+```sh
+docker compose up --build
+```
+
+The development container binds Phoenix to `0.0.0.0` while direct local
+development keeps the loopback-only default. Stop the container with:
+
+```sh
+docker compose down
+```
+
+Build the production release image with:
+
+```sh
+docker build --target final -t riot-json-crypto-api .
+```
+
+Run it with production secrets supplied only at runtime:
+
+```sh
+export RIOT_SIGNING_SECRET="$(openssl rand -hex 32)"
+export SECRET_KEY_BASE="$(openssl rand -base64 48)"
+docker run --rm -p 4000:4000 \
+  -e RIOT_SIGNING_SECRET \
+  -e SECRET_KEY_BASE \
+  -e PHX_HOST=localhost \
+  riot-json-crypto-api
+```
+
 ## Tests and quality checks
 
 Run the test suite:

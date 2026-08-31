@@ -1,0 +1,16 @@
+.dockerignore
+.git
+.github
+.env
+.env.*
+!.env.example
+
+/_build/
+/cover/
+/deps/
+/doc/
+/test/
+/tmp/
+
+*.ez
+erl_crash.dump
