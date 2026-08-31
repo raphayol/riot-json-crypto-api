@@ -5,6 +5,9 @@ An Elixir/Phoenix implementation of the
 service accepts arbitrary JSON payloads and exposes operations for reversible
 Base64 transformation and signature creation/verification.
 
+Base64 is a reversible encoding and provides no confidentiality. The exercise
+uses it as a replaceable transformation rather than as production encryption.
+
 The project is intentionally implemented as a small JSON-only API. It has no
 database, HTML interface, frontend assets, or mailer.
 
@@ -31,6 +34,16 @@ Detailed interpretations, tradeoffs, and observable invariants are recorded in
 
 The exact Erlang and Elixir versions are pinned in `mise.toml`; dependency
 versions are locked in `mix.lock`.
+
+## Project structure
+
+```text
+config/                     Phoenix and runtime configuration
+docs/                       Authored design documentation
+lib/riot_json_crypto/       Framework-independent domain logic
+lib/riot_json_crypto_web/   HTTP endpoint, router, and web adapters
+test/                       Unit and HTTP boundary tests
+```
 
 ## Setup
 
@@ -80,28 +93,12 @@ docker compose up --build
 ```
 
 The development container binds Phoenix to `0.0.0.0` while direct local
-development keeps the loopback-only default. Stop the container with:
+development keeps the loopback-only default.
+
+Stop the container with:
 
 ```sh
 docker compose down
-```
-
-Build the production release image with:
-
-```sh
-docker build --target final -t riot-json-crypto-api .
-```
-
-Run it with production secrets supplied only at runtime:
-
-```sh
-export RIOT_SIGNING_SECRET="$(openssl rand -hex 32)"
-export SECRET_KEY_BASE="$(openssl rand -base64 48)"
-docker run --rm -p 4000:4000 \
-  -e RIOT_SIGNING_SECRET \
-  -e SECRET_KEY_BASE \
-  -e PHX_HOST=localhost \
-  riot-json-crypto-api
 ```
 
 ## Tests and quality checks
@@ -118,16 +115,3 @@ as errors, remove unused dependency locks, format the project, and run tests:
 ```sh
 mix precommit
 ```
-
-## Project structure
-
-```text
-config/             Phoenix and runtime configuration
-docs/               Authored design documentation
-lib/riot_json_crypto/       Framework-independent domain logic
-lib/riot_json_crypto_web/   HTTP endpoint, router, and web adapters
-test/               Unit and HTTP boundary tests
-```
-
-Base64 is a reversible encoding and provides no confidentiality. The exercise
-uses it as a replaceable transformation rather than as production encryption.
