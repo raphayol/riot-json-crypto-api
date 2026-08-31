@@ -12,6 +12,22 @@ defmodule RiotJsonCryptoWeb.OpenAPITest do
 
     for path <- Map.keys(spec["paths"]) do
       assert %{"post" => _operation} = spec["paths"][path]
+
+      schema_reference =
+        get_in(spec, [
+          "paths",
+          path,
+          "post",
+          "requestBody",
+          "content",
+          "application/json",
+          "schema",
+          "$ref"
+        ])
+
+      schema_name = Path.basename(schema_reference)
+
+      assert get_in(spec, ["components", "schemas", schema_name, "example"])
     end
   end
 

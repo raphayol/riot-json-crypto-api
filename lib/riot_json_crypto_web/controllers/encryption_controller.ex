@@ -3,18 +3,19 @@ defmodule RiotJsonCryptoWeb.EncryptionController do
   use OpenApiSpex.ControllerSpecs
 
   alias RiotJsonCrypto.Encryption
-  alias RiotJsonCryptoWeb.Schemas.JsonValue
+  alias RiotJsonCryptoWeb.Schemas.{EncryptedJsonValue, JsonValue}
 
   tags ["encryption"]
 
   operation :encrypt,
     summary: "Encrypt a JSON payload",
     request_body: {"JSON payload", "application/json", JsonValue, required: true},
-    responses: [ok: {"Encrypted JSON payload", "application/json", JsonValue}]
+    responses: [ok: {"Encrypted JSON payload", "application/json", EncryptedJsonValue}]
 
   operation :decrypt,
     summary: "Decrypt a JSON payload",
-    request_body: {"Encrypted JSON payload", "application/json", JsonValue, required: true},
+    request_body:
+      {"Encrypted JSON payload", "application/json", EncryptedJsonValue, required: true},
     responses: [ok: {"Decrypted JSON payload", "application/json", JsonValue}]
 
   def encrypt(conn, %{"_json" => payload}) do
